@@ -206,10 +206,10 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
         "BookId": {"rich_text": [{"type": "text", "text": {"content": bookId}}]},
         "ISBN": {"rich_text": [{"type": "text", "text": {"content": isbn}}]},
         "URL": {"url": f"https://weread.qq.com/web/reader/{calculate_book_str_id(bookId)}"},
-        "Author": {"rich_text": [{"type": "text", "text": {"content": author}}]},
+        "作者": {"rich_text": [{"type": "text", "text": {"content": author}}]},
         "Sort": {"number": sort},
         "Rating": {"number": rating},
-        "Cover": {"files": [{"type": "external", "name": "Cover", "external": {"url": cover}}]},
+        "封面": {"files": [{"type": "external", "name": "Cover", "external": {"url": cover}}]},
     }
     read_info = get_read_info(bookId=bookId)
     if read_info != None:
@@ -222,12 +222,12 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
         minutes = readingTime % 3600 // 60
         if minutes > 0:
             format_time += f"{minutes}分"
-        properties["Status"] = {"select": {
-            "name": "读完" if markedStatus == 4 else "在读"}}
+        properties["阅读状态"] = {"select": {
+            "name": "已读" if markedStatus == 4 else "在读"}}
         properties["ReadingTime"] = {"rich_text": [
             {"type": "text", "text": {"content": format_time}}]}
         if "finishedDate" in read_info:
-            properties["Date"] = {"date": {"start": datetime.utcfromtimestamp(read_info.get(
+            properties["开始时间"] = {"date": {"start": datetime.utcfromtimestamp(read_info.get(
                 "finishedDate")).strftime("%Y-%m-%d %H:%M:%S"), "time_zone": "Asia/Shanghai"}}
 
     icon = {
