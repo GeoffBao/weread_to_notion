@@ -202,7 +202,7 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
         "type": "database_id"
     }
     properties = {
-        "BookName": {"title": [{"type": "text", "text": {"content": bookName}}]},
+        "书名": {"title": [{"type": "text", "text": {"content": bookName}}]},
         "BookId": {"rich_text": [{"type": "text", "text": {"content": bookId}}]},
         "ISBN": {"rich_text": [{"type": "text", "text": {"content": isbn}}]},
         "URL": {"url": f"https://weread.qq.com/web/reader/{calculate_book_str_id(bookId)}"},
