@@ -227,7 +227,7 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
         properties["阅读时长"] = {"rich_text": [
             {"type": "text", "text": {"content": format_time}}]}
         if "finishedDate" in read_info:
-            properties["开始时间"] = {"date": {"start": datetime.utcfromtimestamp(read_info.get(
+            properties["Date"] = {"date": {"start": datetime.utcfromtimestamp(read_info.get(
                 "finishedDate")).strftime("%Y-%m-%d %H:%M:%S"), "time_zone": "Asia/Shanghai"}}
 
     icon = {
