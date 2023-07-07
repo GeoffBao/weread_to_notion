@@ -208,7 +208,7 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
         "URL": {"url": f"https://weread.qq.com/web/reader/{calculate_book_str_id(bookId)}"},
         "作者": {"rich_text": [{"type": "text", "text": {"content": author}}]},
         "Sort": {"number": sort},
-        "Rating": {"number": rating},
+        "阅读进度": {"number": rating},
         "封面": {"files": [{"type": "external", "name": "Cover", "external": {"url": cover}}]},
     }
     read_info = get_read_info(bookId=bookId)
@@ -224,7 +224,7 @@ def insert_to_notion(bookName, bookId, cover, sort, author,isbn,rating):
             format_time += f"{minutes}分"
         properties["阅读状态"] = {"select": {
             "name": "已读" if markedStatus == 4 else "在读"}}
-        properties["ReadingTime"] = {"rich_text": [
+        properties["阅读时长"] = {"rich_text": [
             {"type": "text", "text": {"content": format_time}}]}
         if "finishedDate" in read_info:
             properties["开始时间"] = {"date": {"start": datetime.utcfromtimestamp(read_info.get(
